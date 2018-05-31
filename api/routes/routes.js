@@ -9,7 +9,7 @@ module.exports = function(app) {
 
     app.route('/patients/:patientID')
       .get(patientcontroller.get_specific_record)
-      .put(patientcontroller.update_profile)
+      .post(patientcontroller.update_profile)
       .delete(patientcontroller.delete_specific_record)
 
     app.route('/patients/:patientID/history')
@@ -41,6 +41,7 @@ module.exports = function(app) {
     app.route('/contacts/:patientID')
       .get(patientcontroller.get_specific_contact)
       .delete(patientcontroller.delete_emergency_contact)
+    
 
     //temporary API, for testing
     app.route('/logindetails')

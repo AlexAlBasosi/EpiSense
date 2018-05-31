@@ -1,6 +1,7 @@
 var mySQLConnection = require('../models/model');
 var hash = require('js-sha256');
 var crypto = require('crypto');
+var ip = require('ip');
 
 mySQLConnection.connect(function(error){    
     if(error){
@@ -218,12 +219,12 @@ exports.update_profile = function(req, res){
     console.log("Updating record...");
     var id = req.params.patientID;
     // var gender = req.query.gender;
-    // var age = req.query.age;
+    var age = req.query.age;
     var date_of_birth = req.query.date_of_birth;
     var contact_number = req.query.contact_number;
     var address = req.query.address;
 
-    var sql = "UPDATE patientinfo SET date_of_birth = '" + date_of_birth + "', contact_number ='" + contact_number + "',  address= '" + address + "' WHERE patient_id= " + id;
+    var sql = "UPDATE patientinfo SET age = '" + age + "', date_of_birth = '" + date_of_birth + "', contact_number ='" + contact_number + "',  address= '" + address + "' WHERE patient_id= " + id;
 
      mySQLConnection.query(sql, function(error, rows, fields){
         if(error){
