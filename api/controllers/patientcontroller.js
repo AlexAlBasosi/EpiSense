@@ -238,6 +238,23 @@ exports.update_profile = function(req, res){
     });
 };
 
+exports.delete_specific_record = function(req, res){
+
+    var patientID = req.params.patientID;
+
+    var sql = "DELETE FROM patientinfo WHERE patient_id=" + patientID;
+    mySQLConnection.query(sql, function(error, rows, fields){
+        if(error){
+            console.log("Query failed.");
+            console.log(error);
+            res.sendStatus(500);
+        } else {
+            console.log("Patient record deleted.");
+            res.sendStatus(200);
+        }
+    });
+};
+
 exports.login = function(req, res){
 
     var email = req.query.email;
@@ -287,25 +304,6 @@ exports.login = function(req, res){
 
     });
 };
-
-
-exports.delete_specific_record = function(req, res){
-
-    var patientID = req.params.patientID;
-
-    var sql = "DELETE FROM patientinfo WHERE patient_id=" + patientID;
-    mySQLConnection.query(sql, function(error, rows, fields){
-        if(error){
-            console.log("Query failed.");
-            console.log(error);
-            res.sendStatus(500);
-        } else {
-            console.log("Patient record deleted.");
-            res.sendStatus(200);
-        }
-    });
-};
-
 
 //the following methods query the patient_logindetails table
 exports.get_login_details = function(req, res){
