@@ -40,6 +40,7 @@ module.exports = function(app) {
     
     app.route('/contacts/:patientID')
       .get(patientcontroller.get_specific_contact)
+      .put(patientcontroller.update_emergency_contact)
       .delete(patientcontroller.delete_emergency_contact)
     
 

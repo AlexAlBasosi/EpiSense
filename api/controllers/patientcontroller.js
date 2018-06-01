@@ -214,30 +214,6 @@ exports.get_specific_record = function(req, res){
     });
 };
 
-
-exports.update_profile = function(req, res){
-    console.log("Updating record...");
-    var id = req.params.patientID;
-    // var gender = req.query.gender;
-    var age = req.query.age;
-    var date_of_birth = req.query.date_of_birth;
-    var contact_number = req.query.contact_number;
-    var address = req.query.address;
-
-    var sql = "UPDATE patientinfo SET age = '" + age + "', date_of_birth = '" + date_of_birth + "', contact_number ='" + contact_number + "',  address= '" + address + "' WHERE patient_id= " + id;
-
-     mySQLConnection.query(sql, function(error, rows, fields){
-        if(error){
-            console.log("Query failed.");
-            console.log(error);
-            res.sendStatus(500);
-        } else {
-            console.log("Profile updated.");
-            res.sendStatus(200);
-        }
-    });
-};
-
 exports.login = function(req, res){
 
     var email = req.query.email;
@@ -285,6 +261,29 @@ exports.login = function(req, res){
             res.sendStatus(403); //password incorrect
         } 
 
+    });
+};
+
+exports.update_profile = function(req, res){
+    console.log("Updating record...");
+    var id = req.params.patientID;
+    // var gender = req.query.gender;
+    var age = req.query.age;
+    var date_of_birth = req.query.date_of_birth;
+    var contact_number = req.query.contact_number;
+    var address = req.query.address;
+
+    var sql = "UPDATE patientinfo SET age = '" + age + "', date_of_birth = '" + date_of_birth + "', contact_number ='" + contact_number + "',  address= '" + address + "' WHERE patient_id= " + id;
+
+     mySQLConnection.query(sql, function(error, rows, fields){
+        if(error){
+            console.log("Query failed.");
+            console.log(error);
+            res.sendStatus(500);
+        } else {
+            console.log("Profile updated.");
+            res.sendStatus(200);
+        }
     });
 };
 
@@ -441,6 +440,29 @@ exports.delete_emergency_contact = function(req, res){
             res.sendStatus(500);
         } else {
             console.log("Emergency contact deleted.");
+            res.sendStatus(200);
+        }
+    });
+};
+
+exports.update_emergency_contact = function(req, res){
+    console.log("Updating record...");
+    var id = req.params.patientID;
+
+    var contactNumber = req.query.contact_number;
+    var firstName = req.query.first_name;
+    var lastName = req.query.last_name;
+    var newNumber = req.query.new_number;
+
+    var sql = "UPDATE emergencycontacts SET first_name = '" + firstName + "', last_name = '" + lastName + "', contact_number ='" + newNumber + "' WHERE contact_number = '" + contactNumber + "'";
+
+     mySQLConnection.query(sql, function(error, rows, fields){
+        if(error){
+            console.log("Query failed.");
+            console.log(error);
+            res.sendStatus(500);
+        } else {
+            console.log("Profile updated.");
             res.sendStatus(200);
         }
     });
