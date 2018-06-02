@@ -367,7 +367,7 @@ exports.get_emergency_contacts = function(req, res){
             }
 
             if(recordJson[i] == 0){
-                res.send("There are no emergency contacts.");
+                res.sendStatus(206);
             } else {
                 res.json(jsonObj);
             }
@@ -405,7 +405,7 @@ exports.get_specific_contact = function(req, res){
             }
 
             if(recordJson[i] == 0){
-                res.send("There are no emergency contacts.");
+                res.sendStatus(206);
             } else {
                 res.json(jsonObj);
             }
@@ -515,7 +515,7 @@ exports.get_seizure_history = function(req, res){
 
             if(flag == false){
                 if(recordJson[i] == 0){
-                    res.send("This patient has had no seizures.");
+                    res.sendStatus(206);
                 } else {
                     res.json(jsonObj);
                 }
