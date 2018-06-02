@@ -705,6 +705,7 @@ exports.get_number_of_seizures_shaza = function(req, res){
             console.log("Query failed.");
         } else {
             console.log("Query successful.");
+            console.log("Checking number of seizures...");
 
             var recordJson = [rows.length];
 
@@ -738,6 +739,8 @@ exports.get_number_of_seizures_shaza = function(req, res){
                 var seizureJSON = {
                     "Seizures": numberOfSeizuresArray
                 }
+
+                console.log(numberOfSeizuresArray[0].numberOfSeizures);
 
                 res.send(seizureJSON);
             }
