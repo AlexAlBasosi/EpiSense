@@ -482,14 +482,22 @@ exports.get_seizure_history = function(req, res){
 
             var recordJson = [rows.length];
 
-
+            var flag = false;
 
             for(var i = 0; i < rows.length; i++){
-                recordJson[i] = {
-                    "patient_id": rows[i].patient_id,
-                    "timestamp": rows[i].timestamp.getHours() + ":" + rows[i].timestamp.getMinutes(),
-                    "date": rows[i].date,
-                    "isSeizure": rows[i].isSeizure
+                if(typeof(rows[i].timestamp) != "object"){
+                    flag = true;
+                }
+            }
+
+            if(flag === false){
+                for(var i = 0; i < rows.length; i++){
+                    recordJson[i] = {
+                        "patient_id": rows[i].patient_id,
+                        "timestamp": rows[i].timestamp.getHours() + ":" + rows[i].timestamp.getMinutes(),
+                        "date": rows[i].date,
+                        "isSeizure": rows[i].isSeizure
+                    }
                 }
             }
 
@@ -497,7 +505,11 @@ exports.get_seizure_history = function(req, res){
                     "Seizures": recordJson
             }
 
-            res.json(jsonObj);
+            if(flag == false){
+                res.json(jsonObj);
+            } else {
+                res.sendStatus(500);
+            }
         }
     });
 };
@@ -522,6 +534,7 @@ exports.add_seizure = function(req, res){
             res.sendStatus(200);
         }
     });
+    
 };
 
 exports.get_timestamps_array = function(req, res){

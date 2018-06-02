@@ -99,27 +99,20 @@ df.to_csv('FINALOUTPUT.csv')
 f = open('FINALOUTPUT.csv', "r")
 readCSV = csv.reader('FINALOUTPUT.csv',delimiter= ",")
 
+timestamp1 = strftime("%Y-%m-%d %H:%M:%S", gmtime())
+
 for col in readCSV :
               
 	a="15983851284931148960382"
 	m = re.search("1111111111",a)
 	if a:
-
-		params = urllib.urlencode({'number': 12524, 'type': 'issue', 'action': 'show'})
-		headers = {"Content-type": "application/x-www-form-urlencoded",
-					"Accept": "text/plain"}
-								
-		conn = httplib.HTTPConnection("bugs.python.org")
+	
+		url = 'http://localhost:3001/patients/2/history?timestamp=' + timestamp1 + '&isSeizure=1'
+		query = {'isSeizure': 1}
+		res = requests.post(url, data=query)
+		print(res.text)
 		
-		conn.request("POST", "http://localhost:3001/patients/2/history?timestamp=2018-04-20+05:31:19&isSeizure=1", params, headers)
-		response = conn.getresponse()
 		
-		print response.status, response.reason
-		data = response.read()
-		data
-		'Redirecting to <a href="http://bugs.python.org/issue12524">http://bugs.python.org/issue12524</a>'
-		conn.close()
-			
 	else:
 		print("sorry bruv")
 			
