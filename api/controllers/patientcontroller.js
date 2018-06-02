@@ -366,7 +366,11 @@ exports.get_emergency_contacts = function(req, res){
                 "Contacts": recordJson
             }
 
-            res.json(jsonObj);
+            if(recordJson[i] == 0){
+                res.send("There are no emergency contacts.");
+            } else {
+                res.json(jsonObj);
+            }
         }
     });
 };
@@ -400,7 +404,11 @@ exports.get_specific_contact = function(req, res){
                 "Contacts": recordJson
             }
 
-            res.json(jsonObj);
+            if(recordJson[i] == 0){
+                res.send("There are no emergency contacts.");
+            } else {
+                res.json(jsonObj);
+            }
         }
     });
 };
@@ -506,7 +514,11 @@ exports.get_seizure_history = function(req, res){
             }
 
             if(flag == false){
-                res.json(jsonObj);
+                if(recordJson[i] == 0){
+                    res.send("This patient has had no seizures.");
+                } else {
+                    res.json(jsonObj);
+                }
             } else {
                 res.sendStatus(500);
             }
