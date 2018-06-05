@@ -53,6 +53,3 @@ XAMPP: [https://www.apachefriends.org/download.html](https://www.apachefriends.o
 
 
 In order to access the Mobile Application, please refer to the following Github Repository: [https://github.com/shazakazia/Project2018](https://github.com/shazakazia/Project2018)
-
-
-For more information on how to run the various components, check out the User Manual in our Final Report.
