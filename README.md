@@ -52,4 +52,4 @@ XAMPP: [https://www.apachefriends.org/download.html](https://www.apachefriends.o
 
 
 
-And that's it! The Mobile Application and Machine Learning components are coming soon.
+For more information on how to run the various components, check out the User Manual in our Final Report.
